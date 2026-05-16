@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Proximity Chat</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <aside class="sidebar">
+        <section class="brand-block">
+          <div class="brand-mark">P</div>
+          <div>
+            <h1>Proximity</h1>
+            <p>Private realtime rooms</p>
+          </div>
+        </section>
+
+        <section id="joinPanel" class="join-panel">
+          <div class="mode-switch" role="tablist" aria-label="Room action">
+            <button id="createModeBtn" class="mode-btn active" type="button">Create Room</button>
+            <button id="joinModeBtn" class="mode-btn" type="button">Join Room</button>
+          </div>
+
+          <label for="username">Display name</label>
+          <input id="username" autocomplete="name" maxlength="24" placeholder="Your name" />
+
+          <label id="roomCodeLabel" for="roomId">Room code</label>
+          <div class="input-row">
+            <input id="roomId" maxlength="120" placeholder="Auto-generated room code" />
+            <button id="newRoomBtn" class="icon-btn" title="Generate room code" type="button">New</button>
+          </div>
+
+          <button id="joinBtn" class="primary-btn" type="button">Create Room</button>
+        </section>
+
+        <section class="room-panel">
+          <p class="eyebrow">Current Room</p>
+          <h2 id="roomTitle">Not connected</h2>
+          <button id="copyLinkBtn" class="secondary-btn" type="button" disabled>Copy Share Link</button>
+        </section>
+
+        <section class="users-panel">
+          <div class="panel-heading">
+            <p class="eyebrow">Online</p>
+            <span id="userCount">0</span>
+          </div>
+          <ul id="userList"></ul>
+        </section>
+      </aside>
+
+      <section class="chat-area">
+        <header class="chat-header">
+          <div>
+            <p id="connectionText" class="eyebrow">Disconnected</p>
+            <h2 id="chatTitle">Create a room or join with a code</h2>
+          </div>
+          <button id="leaveBtn" class="ghost-btn" type="button" disabled>Leave</button>
+        </header>
+
+        <div id="messages" class="messages" aria-live="polite">
+          <div id="emptyState" class="empty-state">
+            <div class="empty-card">
+              <p class="eyebrow">Ready</p>
+              <h3>Choose Create Room or Join Room</h3>
+              <p>Create gives you a fresh share link. Join connects you to a room link someone sent.</p>
+            </div>
+          </div>
+        </div>
+
+        <form id="messageForm" class="composer">
+          <label class="file-btn" for="fileInput" title="Attach file">+</label>
+          <input id="fileInput" type="file" hidden />
+          <input id="messageInput" autocomplete="off" placeholder="Message this room" disabled />
+          <button id="sendBtn" class="primary-btn" type="submit" disabled>Send</button>
+        </form>
+      </section>
+    </main>
+
+    <script src="https://cdn.socket.io/4.7.5/socket.io.min.js"></script>
+    <script src="{{ url_for('static', filename='app.js') }}"></script>
+  </body>
+</html>
