@@ -49,7 +49,7 @@ Render will generate a public URL. Open that URL, create a room, and use **Copy 
 ## Usage:
 
 -   
-    ``` git clone https://github.com/sakshi2912/Proximity.git ```
+    ``` git clone https://github.com/Pratibha009/Proximity ```
 
 - To start the server
   
